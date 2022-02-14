@@ -60,7 +60,6 @@ hbrt.adobe.com
 helpx.adobe.com
 hlrcv.stage.adobe.com
 ims-na1.adobelogin.com
-ims-na1.adobelogin.com 
 ims-prod06.adobelogin.com
 ims-prod07.adobelogin.com
 indd.adobe.com
@@ -68,7 +67,6 @@ licenses.adobe.com
 licenses.com
 licensing.adobe.com
 lm.licenses.adobe.com
-lm.licenses.adobe.com 
 macromedia.com 
 na1e-acc.services.adobe.com
 newrelic.com
@@ -90,11 +88,9 @@ services.prod.ims.adobejanus.com
 state.typekit.net
 stock.adobe.com
 store1.adobe.com
-store1.adobe.com 
 store2.adobe.com 
 store3.adobe.com
 store.adobe.com 
-story.adobe.com
 supportanyware.adobe.io
 swupdl.adobe.com
 swupmf.adobe.com
@@ -103,7 +99,6 @@ use.edgefonts.net
 use.typekit.com
 worldsecuresystems.com 
 www.adobeexchange.com
-www.adobeexchange.com/api
 www.adobetag.com
 wwwimages2.adobe.com
 wwwimages.adobe.com
