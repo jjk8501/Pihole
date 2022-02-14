@@ -25,7 +25,6 @@ api-cna01.adobe-services.com
 api.demandbase.com 
 as1.ftcdn.net
 as.ftcdn.net
-behance.net
 behance.net 
 build.phonegap.com
 cc-api-assets.adobe.io
@@ -103,3 +102,4 @@ www.adobetag.com
 wwwimages2.adobe.com
 wwwimages.adobe.com
 www-prod.adobesunbreak.com
+
