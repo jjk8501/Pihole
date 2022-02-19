@@ -19,7 +19,6 @@ adobe.tt.omtrdc.net
 aedash.adobe.com
 ams.adobe.com
 ans.oobesas.adobe.com
-api.adobe.io
 api.behance.net
 api-cna01.adobe-services.com
 api.demandbase.com 
@@ -27,13 +26,6 @@ as1.ftcdn.net
 as.ftcdn.net
 behance.net 
 build.phonegap.com
-cc-api-assets.adobe.io
-cc-api-sharedproductions-prerelease.adobe.io 
-cc-api-storage.adobe.io
-cc-api-teamprojects.adobe.io
-cc-api-teamprojects-an1.adobe.io
-cc-api-teamprojects-ew1.adobe.io
-cc-api-teamprojects-ue1.adobe.io
 ccmdl.adobe.com
 ccmdls.adobe.com
 cdn-ffc.oobesaas.adobe.com
@@ -90,7 +82,6 @@ store1.adobe.com
 store2.adobe.com 
 store3.adobe.com
 store.adobe.com 
-supportanyware.adobe.io
 swupdl.adobe.com
 swupmf.adobe.com
 typekit.net
