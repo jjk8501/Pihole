@@ -1,23 +1,32 @@
-activate.adobe.com
-practivate.adobe.com
-ereg.adobe.com
-wip3.adobe.com
-activate.wip3.adobe.com
-3dns-3.adobe.com
-3dns-2.adobe.com
-adobe-dns.adobe.com
-adobe-dns-2.adobe.com
-adobe-dns-3.adobe.com
-ereg.wip3.adobe.com
-activate-sea.adobe.com
-wwis-dubc1-vip60.adobe.com
-activate-sjc0.adobe.com
-hl2rcv.adobe.com
-lm.licenses.adobe.com
-na2m-pr.licenses.adobe.com
-lmlicenses.wip4.adobe.com
-lm.licenses.adobe.com
-na1r.services.adobe.com
-hlrcv.stage.adobe.com
-practivate.adobe.com
-activate.adobe.com
+# ------------------------------------[UPDATE]-------------------------------------
+# Title: The Block List Project - Abuse List
+# Expires: 1 day
+# License: https://unlicense.org
+# Total number of network filters: 23
+# -------------------------------------[INFO]---------------------------------------
+#
+# Adobe Update Blocklist
+# ------------------------------------[FILTERS]-------------------------------------
+0.0.0.0 activate.adobe.com
+0.0.0.0 practivate.adobe.com
+0.0.0.0 ereg.adobe.com
+0.0.0.0 wip3.adobe.com
+0.0.0.0 activate.wip3.adobe.com
+0.0.0.0 3dns-3.adobe.com
+0.0.0.0 3dns-2.adobe.com
+0.0.0.0 adobe-dns.adobe.com
+0.0.0.0 adobe-dns-2.adobe.com
+0.0.0.0 adobe-dns-3.adobe.com
+0.0.0.0 ereg.wip3.adobe.com
+0.0.0.0 activate-sea.adobe.com
+0.0.0.0 wwis-dubc1-vip60.adobe.com
+0.0.0.0 activate-sjc0.adobe.com
+0.0.0.0 hl2rcv.adobe.com
+0.0.0.0 lm.licenses.adobe.com
+0.0.0.0 na2m-pr.licenses.adobe.com
+0.0.0.0 lmlicenses.wip4.adobe.com
+0.0.0.0 lm.licenses.adobe.com
+0.0.0.0 na1r.services.adobe.com
+0.0.0.0 hlrcv.stage.adobe.com
+0.0.0.0 practivate.adobe.com
+0.0.0.0 activate.adobe.com
