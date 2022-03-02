@@ -1,17 +1,1 @@
-# ------------------------------------[UPDATE]--------------------------------------
-# Title: The Block List Project - Abuse List
-# Expires: 1 day
-# License: https://unlicense.org
-# Total number of network filters: 8
-# -------------------------------------[INFO]---------------------------------------
-#
-# Windows Update Blocklist
-# ------------------------------------[FILTERS]-------------------------------------
 0.0.0.0 windowsupdate.microsoft.com
-0.0.0.0 update.microsoft.com
-0.0.0.0 windowsupdate.com
-0.0.0.0 download.windowsupdate.com
-0.0.0.0 download.microsoft.com
-0.0.0.0 wustat.windows.com
-0.0.0.0 ntservicepack.microsoft.com
-0.0.0.0 stats.microsoft.com
