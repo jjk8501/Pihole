@@ -12,3 +12,4 @@ huluim.com
 telemetry.huluad.com
 ts.vindicosuite.com
 vindicoasset.edgesuite.net
+hulustream.com
