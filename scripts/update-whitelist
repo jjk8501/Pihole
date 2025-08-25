@@ -1,0 +1,81 @@
+#!/bin/bash
+CONTAINER="pihole"  # name of your Pi-hole container
+DB="/root/docker/pihole/app/gravity.db"   # host path to gravity.db
+
+WHITELIST_URLS=(
+  "https://raw.githubusercontent.com/anudeepND/whitelist/master/domains/whitelist.txt"
+  "https://raw.githubusercontent.com/matayto/pihole-allowlist/main/pihole-allowlist.txt"
+  "https://raw.githubusercontent.com/SystemJargon/allowlists/main/lists/streaming/disney-plus.txt"
+  "https://raw.githubusercontent.com/SystemJargon/allowlists/main/lists/streaming/netflix.txt"
+  "https://raw.githubusercontent.com/SystemJargon/allowlists/main/lists/streaming/plex.txt"
+  "https://raw.githubusercontent.com/SystemJargon/allowlists/main/lists/streaming/spotify.txt"
+  "https://raw.githubusercontent.com/SystemJargon/allowlists/main/lists/streaming/youtube.txt"
+  "https://raw.githubusercontent.com/SystemJargon/allowlists/main/lists/microsoft/microsoft-authentication.txt"
+  "https://raw.githubusercontent.com/SystemJargon/allowlists/main/lists/microsoft/microsoft-azure.txt"
+  "https://raw.githubusercontent.com/SystemJargon/allowlists/main/lists/microsoft/microsoft-common.txt"
+  "https://raw.githubusercontent.com/SystemJargon/allowlists/main/lists/microsoft/microsoft-misc.txt"
+  "https://raw.githubusercontent.com/SystemJargon/allowlists/main/lists/microsoft/microsoft-office-suite.txt"
+  "https://raw.githubusercontent.com/SystemJargon/allowlists/main/lists/microsoft/microsoft-outlook-application.txt"
+  "https://raw.githubusercontent.com/SystemJargon/allowlists/main/lists/microsoft/microsoft-teams.txt"
+  "https://raw.githubusercontent.com/SystemJargon/allowlists/main/lists/smart-tv/agh-allow-samsung-smart-tv.txt"
+  "https://raw.githubusercontent.com/SystemJargon/allowlists/main/lists/social-media/agh-facebook-social.txt"
+  "https://raw.githubusercontent.com/SystemJargon/allowlists/main/lists/social-media/agh-tiktok.txt"
+  "https://raw.githubusercontent.com/SystemJargon/allowlists/main/lists/social-media/meta_facebook_allowlist.txt"
+  "https://raw.githubusercontent.com/SystemJargon/allowlists/main/lists/updates/windows-defender-agh.txt"
+  "https://raw.githubusercontent.com/SystemJargon/allowlists/main/lists/updates/windows-defender-hosts.txt"
+  "https://raw.githubusercontent.com/SystemJargon/allowlists/main/lists/updates/windows-updates-agh.txt"
+  "https://raw.githubusercontent.com/SystemJargon/allowlists/main/lists/updates/windows-updates-hosts.txt"
+  "https://raw.githubusercontent.com/SystemJargon/allowlists/main/lists/android-basic-allowlist.txt"
+  "https://raw.githubusercontent.com/SystemJargon/allowlists/main/lists/core-allowlist.txt"
+  "https://raw.githubusercontent.com/SystemJargon/allowlists/main/lists/core-allowlist-requested.txt"
+  "https://raw.githubusercontent.com/SystemJargon/allowlists/main/lists/foss.txt"
+  "https://raw.githubusercontent.com/SystemJargon/allowlists/main/lists/connectivity-tests-common.txt"
+  "https://raw.githubusercontent.com/jjk8501/Pihole/main/Whitelists/Hulu.txt"
+)
+
+# Local temp files
+TMP_DOMAINS="/tmp/pihole_whitelist.txt"
+TMP_SQL="/tmp/pihole_whitelist.sql"
+LOGFILE="/root/docker/pihole/app/update-whitelist.log"
+
+# --- SCRIPT ---
+echo "[+] Starting whitelist update: $(date)" | tee -a "$LOGFILE"
+
+# Download & clean whitelist sources
+> "$TMP_DOMAINS"
+for url in "${WHITELIST_URLS[@]}"; do
+    echo "    Fetching $url" | tee -a "$LOGFILE"
+    curl -sL "$url" | \
+      sed 's/\r//g' | \
+      sed 's/#.*//g' | \
+      awk '{$1=$1};1' | \
+      grep -v '^$' >> "$TMP_DOMAINS"
+done
+
+# Deduplicate domains
+sort -u -o "$TMP_DOMAINS" "$TMP_DOMAINS"
+
+# Generate bulk SQL insert
+> "$TMP_SQL"
+while read -r domain; do
+    esc_domain=$(echo "$domain" | sed "s/'/''/g")
+    echo "INSERT OR IGNORE INTO domainlist (type, domain, comment) VALUES (0,'$esc_domain','bulk import');" >> "$TMP_SQL"
+done < "$TMP_DOMAINS"
+
+# --- Container stop / import / start ---
+echo "[+] Stopping Pi-hole container to safely update database..." | tee -a "$LOGFILE"
+docker stop "$CONTAINER"
+
+echo "[+] Importing whitelist entries into gravity.db..." | tee -a "$LOGFILE"
+sqlite3 "$DB" < "$TMP_SQL"
+
+echo "[+] Starting Pi-hole container..." | tee -a "$LOGFILE"
+docker start "$CONTAINER"
+
+echo "[+] Sleeping 5 minutes to allow container to fully start..." | tee -a "$LOGFILE"
+sleep 300  # 5 minutes
+
+# Reload DNS inside container
+docker exec "$CONTAINER" pihole restartdns reload
+
+echo "[✓] Whitelist update complete: $(date)" | tee -a "$LOGFILE"
