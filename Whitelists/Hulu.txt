@@ -1,3 +1,6 @@
+p.hulu.com
+t.hulu.com
+t2.hulu.com
 hulu-darwin.fms.c.footprint.net
 hulu.playback.edge.bamgrid.com
 cws-hulu.conviva.com
@@ -5,10 +8,9 @@ huluim.com
 ts.vindicosuite.com
 vindicoasset.edgesuite.net
 hulustream.com
-doppler.hulu.com
 vortex.hulu.com
 cws-hulu.conviva.com
 hulu.hb.omtrdc.net
 hulu-lr.hb-api.omtrdc.net
-views-dual.hulu.com
-vortex-dual.hulu.com
+doppler.hulu.com
+
